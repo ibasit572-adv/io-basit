@@ -1,0 +1,978 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Madiha Mam | A Semester of Memories</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --cream: #fff8f1;
+  --pink: #f2d8df;
+  --rose: #d17b91;
+  --burgundy: #642b43;
+  --gold: #c5a16b;
+  --dark: #39242e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  overflow: hidden;
+}
+
+.serif {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.page {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: grid;
+  place-items: center;
+  padding: 35px 20px 85px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(.94) translateY(30px);
+  transition:
+    opacity .8s ease,
+    transform .8s cubic-bezier(.2,.8,.2,1),
+    visibility .8s;
+}
+
+.page:target {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: scale(1) translateY(0);
+  z-index: 5;
+}
+
+body:not(:has(.page:target)) #page1 {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: none;
+  z-index: 5;
+}
+
+/* BACKGROUND PARTICLES */
+
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #d17b91;
+  opacity: .45;
+  animation: drift 12s linear infinite;
+}
+
+.particle:nth-child(1) { left: 8%; top: 90%; animation-duration: 13s; }
+.particle:nth-child(2) { left: 22%; top: 100%; animation-duration: 17s; animation-delay: 2s; }
+.particle:nth-child(3) { left: 40%; top: 95%; animation-duration: 14s; animation-delay: 4s; }
+.particle:nth-child(4) { left: 65%; top: 100%; animation-duration: 18s; animation-delay: 1s; }
+.particle:nth-child(5) { left: 85%; top: 90%; animation-duration: 15s; animation-delay: 3s; }
+.particle:nth-child(6) { left: 95%; top: 100%; animation-duration: 19s; animation-delay: 5s; }
+
+@keyframes drift {
+  0% { transform: translateY(0) rotate(0); opacity: 0; }
+  20% { opacity: .6; }
+  80% { opacity: .5; }
+  100% { transform: translateY(-115vh) rotate(360deg); opacity: 0; }
+}
+
+/* FLOATING PETALS */
+
+.petal {
+  position: absolute;
+  width: 17px;
+  height: 26px;
+  background: linear-gradient(135deg, #f6c6d1, #bd617d);
+  border-radius: 100% 0 100% 0;
+  opacity: .6;
+  animation: petalFall 14s linear infinite;
+}
+
+.petal:nth-child(1) { left: 10%; animation-delay: 1s; }
+.petal:nth-child(2) { left: 35%; animation-delay: 5s; }
+.petal:nth-child(3) { left: 65%; animation-delay: 2s; }
+.petal:nth-child(4) { left: 90%; animation-delay: 7s; }
+
+@keyframes petalFall {
+  0% { top: -10%; transform: rotate(0); }
+  100% { top: 110%; transform: translateX(80px) rotate(650deg); }
+}
+
+/* COMMON ELEMENTS */
+
+.top-label {
+  font-size: 10px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 22px;
+}
+
+.heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(48px, 9vw, 95px);
+  line-height: .95;
+  font-weight: 500;
+  color: var(--burgundy);
+}
+
+.heading em {
+  color: var(--rose);
+  font-weight: 400;
+}
+
+.description {
+  max-width: 490px;
+  font-size: 13px;
+  line-height: 2;
+  color: #80616c;
+  margin: 22px auto;
+}
+
+.nav {
+  position: fixed;
+  z-index: 20;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px;
+  background: #fffaf1dd;
+  backdrop-filter: blur(15px);
+  border: 1px solid #d9b5bb;
+  border-radius: 50px;
+  box-shadow: 0 10px 35px #54283b19;
+  white-space: nowrap;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--burgundy);
+  font-size: 10px;
+  padding: 12px 15px;
+  border-radius: 30px;
+  transition: .3s;
+}
+
+.nav a:hover {
+  background: var(--burgundy);
+  color: white;
+}
+
+/* PAGE 1: WELCOME */
+
+#page1 {
+  text-align: center;
+  background:
+    radial-gradient(circle at 15% 20%, #f2d1d9, transparent 35%),
+    radial-gradient(circle at 85% 80%, #eacbd3, transparent 40%),
+    var(--cream);
+}
+
+.intro-content {
+  position: relative;
+  z-index: 2;
+  animation: entrance 1.5s both;
+}
+
+@keyframes entrance {
+  from { opacity: 0; transform: translateY(45px) scale(.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.orbit {
+  position: absolute;
+  width: 310px;
+  height: 310px;
+  border: 1px solid #b77b8b66;
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  animation: rotate 30s linear infinite;
+}
+
+.orbit::before {
+  content: "✿";
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  color: var(--rose);
+  font-size: 28px;
+}
+
+.orbit.two {
+  width: 410px;
+  height: 410px;
+  border-style: dashed;
+  animation-direction: reverse;
+  opacity: .5;
+}
+
+@keyframes rotate {
+  to { rotate: 360deg; }
+}
+
+.welcome-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(65px, 12vw, 125px);
+  line-height: .83;
+  font-weight: 500;
+  color: var(--burgundy);
+  margin-bottom: 28px;
+}
+
+.welcome-title span {
+  display: block;
+  font-style: italic;
+  color: var(--rose);
+}
+
+.open-button {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 16px 30px;
+  border-radius: 40px;
+  background: var(--burgundy);
+  color: white;
+  text-decoration: none;
+  font-size: 11px;
+  letter-spacing: 2px;
+  box-shadow: 0 12px 30px #642b4340;
+  transition: .4s;
+}
+
+.open-button:hover {
+  background: var(--rose);
+  transform: translateY(-5px);
+  box-shadow: 0 18px 35px #642b4350;
+}
+
+.small-note {
+  margin-top: 25px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #9a6a78;
+}
+
+/* PAGE 2: FLOATING MEMORIES */
+
+#page2 {
+  text-align: center;
+  background:
+    radial-gradient(circle at 80% 10%, #f1d0d8, transparent 35%),
+    #fff8f1;
+}
+
+.memory-content {
+  width: min(100%, 950px);
+  position: relative;
+  z-index: 2;
+}
+
+.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 55px;
+  perspective: 1000px;
+}
+
+.memory-card {
+  position: relative;
+  min-height: 230px;
+  padding: 30px 20px;
+  border: 1px solid #ffffff;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #ffffffbb, #f3dce3a8);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 50px #75425215;
+  transition: .5s cubic-bezier(.2,.8,.2,1);
+  animation: cardFloat 5s ease-in-out infinite;
+}
+
+.memory-card:nth-child(2) { animation-delay: -1.5s; }
+.memory-card:nth-child(3) { animation-delay: -3s; }
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0) rotateY(0); }
+  50% { transform: translateY(-13px) rotateY(3deg); }
+}
+
+.memory-card:hover {
+  transform: translateY(-18px) rotateY(-5deg) scale(1.04);
+  box-shadow: 0 30px 65px #75425230;
+  border-color: #d99aaa;
+}
+
+.memory-icon {
+  font-size: 37px;
+  margin-bottom: 18px;
+  display: block;
+  animation: iconPulse 3s ease-in-out infinite;
+}
+
+@keyframes iconPulse {
+  50% { transform: scale(1.15) rotate(8deg); }
+}
+
+.memory-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 31px;
+  font-weight: 600;
+  color: var(--burgundy);
+  margin-bottom: 10px;
+}
+
+.memory-card p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: #80616c;
+}
+
+.memory-card .index {
+  position: absolute;
+  top: 13px;
+  right: 16px;
+  font-size: 10px;
+  color: #c18a98;
+  letter-spacing: 2px;
+}
+
+.next-note {
+  margin-top: 35px;
+  color: #a16d7c;
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+/* PAGE 3: LETTER */
+
+#page3 {
+  background:
+    radial-gradient(circle at 10% 90%, #f0d1d9, transparent 35%),
+    #f8e9e7;
+}
+
+.letter {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 680px);
+  padding: clamp(35px, 7vw, 75px);
+  text-align: center;
+  background: #fffaf4;
+  border: 1px solid #e5c7c1;
+  box-shadow: 0 30px 100px #673b4822;
+  animation: letterIn 1.2s both;
+}
+
+@keyframes letterIn {
+  from { opacity: 0; transform: translateY(60px) rotateX(10deg); }
+  to { opacity: 1; transform: translateY(0) rotateX(0); }
+}
+
+.letter::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid #d9b7a9;
+  pointer-events: none;
+}
+
+.letter .to {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--rose);
+}
+
+.letter h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(43px, 8vw, 72px);
+  font-weight: 500;
+  color: var(--burgundy);
+  margin: 24px 0;
+}
+
+.letter p {
+  max-width: 490px;
+  margin: auto;
+  font-size: 13px;
+  line-height: 2.2;
+  color: #71525b;
+}
+
+.letter .signature {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-style: italic;
+  color: var(--rose);
+  margin-top: 30px;
+}
+
+.letter .flower {
+  font-size: 26px;
+  margin-bottom: 20px;
+  animation: iconPulse 3s infinite;
+}
+
+/* PAGE 4: FINALE */
+
+#page4 {
+  text-align: center;
+  color: var(--cream);
+  background:
+    radial-gradient(circle at 50% 45%, #91465e, transparent 50%),
+    #482033;
+}
+
+.finale-content {
+  position: relative;
+  z-index: 2;
+  animation: finaleIn 2s both;
+}
+
+@keyframes finaleIn {
+  from { opacity: 0; transform: scale(.7); filter: blur(10px); }
+  to { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+
+.finale-flower {
+  font-size: 75px;
+  color: #efc0c6;
+  animation: bloom 4s ease-in-out infinite;
+}
+
+@keyframes bloom {
+  0%, 100% { transform: scale(.9) rotate(-8deg); }
+  50% { transform: scale(1.2) rotate(8deg); }
+}
+
+.finale-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(60px, 12vw, 125px);
+  font-weight: 500;
+  line-height: .85;
+  margin: 25px 0;
+}
+
+.finale-title span {
+  display: block;
+  font-style: italic;
+  color: #efb8c5;
+}
+
+.finale-content p {
+  color: #f0d8df;
+  font-size: 12px;
+  letter-spacing: 2px;
+  line-height: 2.2;
+  margin-top: 25px;
+}
+
+.gold-line {
+  height: 1px;
+  width: 100px;
+  background: var(--gold);
+  margin: 28px auto;
+}
+
+.final-button {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 13px 25px;
+  border: 1px solid #eac1c9;
+  border-radius: 30px;
+  color: #fff2ed;
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: 2px;
+  transition: .4s;
+}
+
+.final-button:hover {
+  background: #fff2ed;
+  color: var(--burgundy);
+}
+
+/* DECORATIVE ORBS */
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fff5ed66, #e4a7b755);
+  filter: blur(1px);
+  animation: orbFloat 9s ease-in-out infinite;
+}
+
+.orb.a { width: 90px; height: 90px; top: 15%; left: 8%; }
+.orb.b { width: 45px; height: 45px; top: 65%; right: 12%; animation-delay: -3s; }
+.orb.c { width: 65px; height: 65px; bottom: 10%; left: 18%; animation-delay: -5s; }
+
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-35px) rotate(90deg); }
+}
+
+/* MOBILE */
+
+@media(max-width: 700px) {
+  .memory-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    max-width: 390px;
+    margin: 35px auto 0;
+  }
+
+  .memory-card {
+    min-height: 175px;
+    padding: 23px;
+  }
+
+  .memory-icon {
+    margin-bottom: 8px;
+  }
+
+  .memory-card h3 {
+    font-size: 27px;
+  }
+
+  .page {
+    padding-top: 30px;
+    padding-bottom: 100px;
+  }
+
+  .nav {
+    gap: 0;
+    width: calc(100% - 24px);
+    justify-content: center;
+    bottom: 10px;
+  }
+
+  .nav a {
+    padding: 12px 10px;
+    font-size: 9px;
+  }
+
+  .orbit { width: 250px; height: 250px; }
+  .orbit.two { width: 330px; height: 330px; }
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+  
+/* ==================================
+   EXTRA ANIMATION UPGRADE
+================================== */
+
+/* 1. CINEMATIC PAGE TRANSITIONS */
+
+.page:target {
+  animation: cinematicEnter 1.1s cubic-bezier(.2,.8,.2,1) both;
+}
+
+@keyframes cinematicEnter {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px)
+               rotateX(8deg)
+               scale(.88)
+               translateY(50px);
+    filter: blur(12px);
+  }
+
+  60% {
+    opacity: 1;
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: perspective(1200px)
+               rotateX(0)
+               scale(1)
+               translateY(0);
+    filter: blur(0);
+  }
+}
+
+
+/* 2. ANIMATED BACKGROUND GLOW */
+
+.page::before {
+  content: "";
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #e9aabb55,
+    transparent 70%
+  );
+  top: -180px;
+  right: -150px;
+  pointer-events: none;
+  animation: glowMove 12s ease-in-out infinite alternate;
+}
+
+.page::after {
+  content: "";
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    #d8a4b955,
+    transparent 70%
+  );
+  bottom: -150px;
+  left: -130px;
+  pointer-events: none;
+  animation: glowMove 15s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes glowMove {
+  from {
+    transform: translate(0,0) scale(.8);
+  }
+  to {
+    transform: translate(100px,70px) scale(1.4);
+  }
+}
+
+
+/* 3. GLASS CARD SHINE */
+
+.memory-card {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.memory-card::before {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 70%;
+  height: 300%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #ffffffa8,
+    transparent
+  );
+  transform: rotate(25deg);
+  transition: 1s;
+  z-index: -1;
+}
+
+.memory-card:hover::before {
+  left: 150%;
+}
+
+
+/* 4. CARD BORDER ANIMATION */
+
+.memory-card {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(145deg,#fffaf4,#f2dce3) padding-box,
+    linear-gradient(
+      120deg,
+      #d17b91,
+      #f7e7d0,
+      #b77b8b,
+      #d17b91
+    ) border-box;
+  background-size: 100% 100%, 300% 300%;
+  animation:
+    cardFloat 5s ease-in-out infinite,
+    borderFlow 6s linear infinite;
+}
+
+@keyframes borderFlow {
+  to {
+    background-position:
+      0 0,
+      300% 0;
+  }
+}
+
+
+/* 5.
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1: WELCOME -->
+
+<section class="page" id="page1">
+
+  <div class="particles">
+    <i class="particle"></i><i class="particle"></i>
+    <i class="particle"></i><i class="particle"></i>
+    <i class="particle"></i><i class="particle"></i>
+  </div>
+
+  <div class="petals">
+    <i class="petal"></i><i class="petal"></i>
+    <i class="petal"></i><i class="petal"></i>
+  </div>
+
+  <div class="orbit"></div>
+  <div class="orbit two"></div>
+
+  <div class="intro-content">
+    <div class="top-label">A little website · A lot of gratitude</div>
+
+    <h1 class="welcome-title">
+      A World of
+      <span>Memories.</span>
+    </h1>
+
+    <p class="description">
+      Created with appreciation for someone
+      who made our first semester of Web Technologies special.
+    </p>
+
+    <a href="#page2" class="open-button">
+      ENTER THE EXPERIENCE ✦
+    </a>
+
+    <div class="small-note">
+      A SPECIAL TRIBUTE TO MADIHA MAM
+    </div>
+  </div>
+</section>
+
+
+<!-- PAGE 2: FLOATING MEMORIES -->
+
+<section class="page" id="page2">
+
+  <div class="particles">
+    <i class="particle"></i><i class="particle"></i>
+    <i class="particle"></i><i class="particle"></i>
+    <i class="particle"></i>
+  </div>
+
+  <div class="orb a"></div>
+  <div class="orb b"></div>
+  <div class="orb c"></div>
+
+  <div class="memory-content">
+
+    <div class="top-label">A semester worth remembering</div>
+
+    <h2 class="heading">
+      More Than
+      <em>Lessons.</em>
+    </h2>
+
+    <p class="description">
+      Every new topic brought something different.
+      Here are a few things we will take with us.
+    </p>
+
+    <div class="memory-grid">
+
+      <article class="memory-card">
+        <span class="index">01</span>
+        <span class="memory-icon">⌨️</span>
+        <h3>Knowledge</h3>
+        <p>
+          From our first HTML tags to understanding
+          how webpages are built.
+        </p>
+      </article>
+
+      <article class="memory-card">
+        <span class="index">02</span>
+        <span class="memory-icon">✦</span>
+        <h3>Creativity</h3>
+        <p>
+          Learning how CSS can turn simple
+          webpages into something beautiful.
+        </p>
+      </article>
+
+      <article class="memory-card">
+        <span class="index">03</span>
+        <span class="memory-icon">♡</span>
+        <h3>Confidence</h3>
+        <p>
+          Understanding that every expert
+          starts as a beginner.
+        </p>
+      </article>
+
+    </div>
+
+    <div class="next-note">
+      AND THE BEST PART IS STILL AHEAD ↓
+    </div>
+
+  </div>
+</section>
+
+
+<!-- PAGE 3: THE LETTER -->
+
+<section class="page" id="page3">
+
+  <div class="petals">
+    <i class="petal"></i><i class="petal"></i>
+    <i class="petal"></i><i class="petal"></i>
+  </div>
+
+  <div class="orb a"></div>
+  <div class="orb c"></div>
+
+  <div class="letter">
+
+    <div class="flower">✿</div>
+
+    <div class="to">A message from your students</div>
+
+    <h2>Dear Madiha Mam,</h2>
+
+    <p>
+      Thank you for teaching us Web Technologies
+      throughout our first semester.
+      <br><br>
+
+      From learning the basics of HTML to exploring
+      the creativity of CSS, you helped us take
+      our first steps into the world of web development.
+      <br><br>
+
+      Thank you for your time, patience and guidance.
+      Every lesson has helped us learn something new
+      and understand how much we can create with
+      what we have learned.
+      <br><br>
+
+      We may be beginners today, but the knowledge
+      and skills you have shared will help us
+      build many things in the future.
+      <br><br>
+
+      We truly appreciate your efforts.
+      Thank you for making our first semester
+      a meaningful learning experience.
+    </p>
+
+    <div class="signature">
+      With respect and gratitude ♡
+    </div>
+
+  </div>
+</section>
+
+
+<!-- PAGE 4: GRAND FINALE -->
+
+<section class="page" id="page4">
+
+  <div class="particles">
+    <i class="particle"></i><i class="particle"></i>
+    <i class="particle"></i><i class="particle"></i>
+    <i class="particle"></i><i class="particle"></i>
+  </div>
+
+  <div class="petals">
+    <i class="petal"></i><i class="petal"></i>
+    <i class="petal"></i><i class="petal"></i>
+  </div>
+
+  <div class="orb a"></div>
+  <div class="orb b"></div>
+  <div class="orb c"></div>
+
+  <div class="finale-content">
+
+    <div class="finale-flower">✿</div>
+
+    <div class="top-label" style="color:#edb9c5;">
+      One final message
+    </div>
+
+    <h1 class="finale-title">
+      Thank You,
+      <span>Madiha Mam.</span>
+    </h1>
+
+    <div class="gold-line"></div>
+
+    <p>
+      FOR EVERY LESSON · EVERY EFFORT · EVERY BIT OF GUIDANCE
+    </p>
+
+    <p>
+      You taught us how to create our first webpages.
+      <br>
+      We hope this little creation brings you a smile.
+    </p>
+
+    <a href="#page1" class="final-button">
+      ↺ EXPERIENCE IT AGAIN
+    </a>
+
+  </div>
+</section>
+
+
+<!-- FIXED NAVIGATION -->
+
+<nav class="nav">
+  <a href="#page1">HOME</a>
+  <a href="#page2">MEMORIES</a>
+  <a href="#page3">LETTER</a>
+  <a href="#page4">THANK YOU</a>
+</nav>
+
+</body>
+</html>
